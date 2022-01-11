@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Detail de ma commande{% endblock %}
+{% block titreH1 %}Detail de la commande n°{{commande.id}}{% endblock %}
+
+
+{% block body %}
+   <table class="table">
+        <tbody>
+            <tr>
+                <th>Numéro de commande</th>
+                <td>{{ commande.id }}</td>
+            </tr>
+            <tr>
+                <th>Montant</th>
+                <td>{{ commande.montant }}€</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{commande.dateEnregistrement|date('Le d/m/Y à H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Etat</th>
+                <td>{{ commande.etat }}</td>
+            </tr>
+            <tr>
+                <th>Détails</th>
+                <td>
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Produit</th>
+                                <th>Prix</th>
+                                <th>Quantité</th>
+                                <th>Sous-total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        {% for detail in commande.details %}
+                            <tr>
+                                <td> {{detail.produit.titre}} </td>
+                                <td> {{detail.prix}}€ </td>
+                                <td> {{detail.quantite}}</td>
+                                <td> {{detail.quantite * detail.prix}}€ </td>
+                            </tr>
+                        {% endfor %}
+                         
+                        </tbody>
+
+                        <tfoot class="thead-dark">
+                            <tr>
+                                <th colspan="3">TOTAL</th>
+                                <td> {{commande.montant}}€ </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+     <a href="{{ path('espace') }}" class="btn btn-outline-warning"><i class="fa fa-reply"></i> Retour</a>
+{% endblock %}

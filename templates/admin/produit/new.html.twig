@@ -1,0 +1,11 @@
+{% extends 'gestion.html.twig' %}
+
+{% block title %}New Produit{% endblock %}
+
+{% block body %}
+    <h1>Ajouter Produit</h1>
+
+    {{ include('admin/produit/_form.html.twig') }}
+
+    <a href="{{ path('admin_produit_index') }}"><i class="fa fa-reply"></i> Retour</a>
+{% endblock %}

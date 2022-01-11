@@ -8,12 +8,25 @@
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
-
+    </head>
+    <body>
+   
+        {{include("_menu.html.twig")}}
+       
+        <div class="container mb-5">
+        {{include("_messages.html.twig")}}
+       
+    
+        <h1>{% block titreH1 %}E-boutique{% endblock %}</h1>
+        {% block body %}
+        
+        
+        
+        {% endblock %}
+        </div>
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
     </body>
+  
 </html>

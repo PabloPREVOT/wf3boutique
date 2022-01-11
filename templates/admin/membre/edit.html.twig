@@ -1,0 +1,13 @@
+{% extends 'gestion.html.twig' %}
+
+{% block title %}Modifier Membre{% endblock %}
+
+{% block body %}
+    <h1>Modifier Membre</h1>
+
+    {{ include('admin/membre/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('admin_membre_index') }}"><i class="fa fa-reply"></i> Retour</a>
+
+    {{ include('admin/membre/_delete_form.html.twig') }}
+{% endblock %}

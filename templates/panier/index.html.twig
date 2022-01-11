@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon panier{% endblock %}
+
+{% block titreH1 %}Mon Panier{% endblock %}
+
+{% block body %}
+    <table class="table table-bordered text-center">
+        <thead class="thead-dark">
+            <tr>
+                <th colspan="3"> <h3> Panier </h3></th>
+                <th> <a href=" {{ path('panier_vider')}} " class="btn btn-outline-danger"> Vider <i class="fa fa-cart-arrow-down"></i></a> </th>
+            </tr>
+            <tr>
+                <th>Produit</th>
+                <th>Quantite</th>
+                <th>Prix</th>
+                <th>Sous-total</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% set total = 0 %}
+            {% for ligne in panier %}
+                <tr>
+                    <td> {{ligne.produit.titre}} </td>
+                    <td> {{ligne.quantite}} </td>
+                    <td> {{ligne.produit.prix}} €</td>
+                    <td> {{ligne.produit.prix * ligne.quantite}} €</td>
+                    {% set total = total + (ligne.produit.prix * ligne.quantite) %}
+                </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4">Le panier est vide</td>
+                    </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot class="thead-dark">
+            <tr>
+                <th colspan="3">Total</th>
+                <td class="font-weight-bold"> {{total}} €</td>
+            </tr>
+            <tr><td colspan="4"><a href=" {{path('panier_valider')}} " class="btn btn-outline-warning">Valider panier <i class="fa fa-cash-register"></i></a></td></tr>
+        </tfoot>
+    </table>
+
+{% endblock %}

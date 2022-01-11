@@ -1,0 +1,49 @@
+{% extends 'gestion.html.twig' %}
+
+{% block title %}Liste Membres{% endblock %}
+
+{% block body %}
+    <h1>Liste Membres</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Autorisations</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Civilite</th>
+                <th>Code_postal</th>
+                <th>Ville</th>
+                <th>Adresse</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for membre in membres %}
+            <tr>
+                <td>{{ membre.id }}</td>
+                <td>{{ membre.email }}</td>
+                <td>{{ autorisations(membre) }}</td>
+                <td>{{ membre.nom }}</td>
+                <td>{{ membre.prenom }}</td>
+                <td>{{ membre.civilite }}</td>
+                <td>{{ membre.codePostal }}</td>
+                <td>{{ membre.ville }}</td>
+                <td>{{ membre.adresse }}</td>
+                <td>
+                    <a href="{{ path('admin_membre_show', {'id': membre.id}) }}"><i class="fa fa-eye fs-5"></i></a>
+                    <a href="{{ path('admin_membre_edit', {'id': membre.id}) }}"><i class="fa fa-edit fs-5"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_membre_new') }}">Ajouter</a>
+{% endblock %}

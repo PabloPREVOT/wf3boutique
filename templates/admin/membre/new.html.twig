@@ -1,0 +1,11 @@
+{% extends 'gestion.html.twig' %}
+
+{% block title %}New Membre{% endblock %}
+
+{% block body %}
+    <h1>Ajouter Membre</h1>
+
+    {{ include('admin/membre/_form.html.twig') }}
+
+    <a href="{{ path('admin_membre_index') }}"><i class="fa fa-reply"></i> Retour</a>
+{% endblock %}

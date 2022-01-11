@@ -1,0 +1,39 @@
+{% extends 'gestion.html.twig' %}
+
+{% block title %}Liste Commandes{% endblock %}
+
+{% block body %}
+    <h1>Liste Commandes</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Montant</th>
+                <th>Date_enregistrement</th>
+                <th>Etat</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commande in commandes %}
+            <tr>
+                <td>{{ commande.id }}</td>
+                <td>{{ commande.montant }}</td>
+                <td>{{ commande.dateEnregistrement ? commande.dateEnregistrement|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ commande.etat }}</td>
+                <td>
+                    <a href="{{ path('admin_commande_show', {'id': commande.id}) }}"><i class="fa fa-eye fs-5"></i></a>
+                    <a href="{{ path('admin_commande_edit', {'id': commande.id}) }}"><i class="fa fa-edit fs-5"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_commande_new') }}">Ajouter</a>
+{% endblock %}

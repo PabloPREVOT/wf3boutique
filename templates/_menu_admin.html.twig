@@ -1,0 +1,83 @@
+{% set chemin = app.request.attributes.get("_route") %}
+
+<nav class="nav navbar-expand flex-md-column navbar-dark bg-dark flex-row align-items-center">
+	<div class="collapse navbar-collapse">
+		<ul class="flex-md-column flex-row navbar-nav w-100 justify-content-between">
+			
+			<li class="nav-item ">
+				<a class="nav-link" href="">GESTION</a>
+			</li>
+			<li class="flex-md-column flex-row navbar-nav w-100 justify-content-between">
+				<a class="nav-link {{ chemin starts with "membre" ? " active" : " " }}" href="#menu-membres"  data-toggle="collapse" >
+					Membre
+				</a>
+				<ul id="menu-membres" class="collapse {{ chemin starts with "membre" ? "show" : " " }}">
+					<li class="flex-md-column flex-row navbar-nav w-100 justify-content-between">
+						<a class="nav-link {{ chemin == "admin_membre_index" ? " active" : " " }}" href="{{ path("admin_membre_index") }}">
+							<i class="fa fa-list-alt"></i>
+							Liste
+						</a>
+					</li>
+					<li class="flex-md-column flex-row navbar-nav w-100 justify-content-between">
+						<a class="nav-link {{ chemin == "admin_membre_new" ? " active" : " " }}" href="{{ path("admin_membre_new") }}">
+							<i class="fa fa-plus-square"></i>
+							Ajouter
+						</a>
+					</li>
+				</ul>
+			</li>
+
+			<li class="flex-md-column flex-row navbar-nav w-100 justify-content-between">
+				<a class="nav-link {{ chemin starts with "admin_produit" ? " active" : " " }}" href="#menu-produits" data-toggle="collapse">
+					Produits
+				</a>
+				<ul id="menu-produits" class="collapse {{ chemin starts with "admin_produit" ? "show" : " " }}">
+					<li class="flex-md-column flex-row navbar-nav w-100 justify-content-between">
+						<a class="nav-link {{ chemin == "admin_produit_index" ? " active" : " " }}" href="{{ path("admin_produit_index") }}">
+							<i class="fa fa-list-alt"></i>
+							Liste
+						</a>
+					</li>
+					<li class="flex-md-column flex-row navbar-nav w-100 justify-content-between">
+						<a class="nav-link {{ chemin == "admin_produit_new" ? " active" : " " }}" href="{{ path("admin_produit_new") }}">
+							<i class="fa fa-plus-square"></i>
+							Ajouter
+						</a>
+					</li>
+				</ul>
+			</li>
+
+			<li class="flex-md-column flex-row navbar-nav w-100 justify-content-between">
+				<a class="nav-link {{ chemin starts with "admin_commande" ? " active" : " " }}" href="#menu-commandes" data-toggle="collapse">
+					Commandes
+				</a>
+				<ul id="menu-commandes" class="collapse  {{ chemin starts with "admin_commande" ? "show" : " " }}">
+					<li class="flex-md-column flex-row navbar-nav w-100 justify-content-between">
+						<a class="nav-link {{ chemin == "admin_commande_index" ? " active" : " " }}" href="{{ path("admin_commande_index") }}">
+							<i class="fa fa-list-alt"></i>
+							Liste
+						</a>
+					</li>
+					<li class="flex-md-column flex-row navbar-nav w-100 justify-content-between">
+						<a class="nav-link {{ chemin == "admin_commande_new" ? " active" : " " }}" href="{{ path("admin_commande_new") }}">
+							<i class="fa fa-plus-square"></i>
+							Ajouter
+						</a>
+					</li>
+				</ul>
+			</li>
+
+			{# <li class="nav-item">
+				<a class="nav-link">
+				</a>
+			</li> #}
+
+			<li class="nav-item">
+				<a class="nav-link" href="{{ path("app_logout") }}">
+					<i class="fa fa-sign-out-alt"></i> Déconnexion
+				</a>
+			</li>
+
+		</ul>
+	</div>
+</nav>

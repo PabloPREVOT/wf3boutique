@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>{% block title %}Gestion{% endblock %}| Boutique</title>
+        <link rel="shortcut icon" href="" type="image/png">
+        {% block stylesheets %}
+            {{ encore_entry_link_tags("app") }}
+            {{ encore_entry_link_tags("gestion") }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags("app") }}
+            {{ encore_entry_script_tags("gestion") }}  
+        {% endblock %}
+	</head>
+
+	<body>
+        <div class="right-aside">
+			{% include "_menu.html.twig" %}
+        </div>
+
+		<aside class="bg-dark">
+			{% include "_menu_admin.html.twig" %}
+		</aside>
+
+		<main class="right-aside">
+			<div class="mx-5 pt-2">
+				{% include "_messages.html.twig" %}
+
+				<h1>{% block titreH1 %}Gestion de la boutique{% endblock %}</h1>
+				{% block body %}
+
+				{% endblock %}
+
+                {% if liste is defined %}
+                    <div class="d-flex justify-content-center">
+                        {{ knp_pagination_render(liste) }}
+                    </div>
+                {% endif %}
+                
+			</div>
+		</main>
+
+		{% include "_footer.html.twig" with { "footer_admin": true } %}
+
+	</body>
+</html>

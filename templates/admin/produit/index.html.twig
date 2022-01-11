@@ -1,0 +1,57 @@
+{% extends 'gestion.html.twig' %}
+
+{% block title %}Liste Produits{% endblock %}
+
+{% block titreH1 %}Liste Produit{% endblock %}
+
+{% block body %}
+    <table class="table">
+        <thead>
+        <tr>
+            <td colspan="10">{{ knp_pagination_render(produits) }}</td>
+        </tr>
+            <tr>
+                <th>Id</th>
+                <th>Reference</th>
+                <th>Categorie</th>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Couleur</th>
+                <th>Public</th>
+                <th>Photo</th>
+                <th>Prix</th>
+                <th>Stock</th>
+                <th>Taille</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for produit in produits %}
+            <tr>
+                <td>{{ produit.id }}</td>
+                <td>{{ produit.reference }}</td>
+                <td>{{ produit.categorie ? produit.categorie.libelle : "" }}</td>
+                <td>{{ produit.titre }}</td>
+                <td>{{ produit.description }}</td>
+                <td>{{ produit.couleur }}</td>
+                <td>{{ produit.public }}</td>
+                <td>{{ produit.photo }}</td>
+                <td>{{ produit.prix }}</td>
+                <td>{{ produit.stock }}</td>
+                <td>{{ produit.taille }}</td>
+                <td>
+                    <a href="{{ path('admin_produit_show', {'id': produit.id}) }}"><i class="fa fa-eye fs-5"></i></a>
+                    <a href="{{ path('admin_produit_edit', {'id': produit.id}) }}"><i class="fa fa-edit fs-5"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('admin_produit_new') }}">Ajouter</a>
+{% endblock %}
+
+{% set liste = produits %}

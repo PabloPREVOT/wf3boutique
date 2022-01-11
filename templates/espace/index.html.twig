@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Espace Membre{% endblock %}
+{% block titreH1 %}Espace Membre{% endblock %}
+
+{% block body %}
+    <h3>{{app.user|salutations}} </h3>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Numéro de client</th>
+                <td>{{ app.user.id }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ app.user.email }}</td>
+            </tr>
+            <tr>
+                <th>Droits d'accès</th>
+                <td> {% for role in app.user.roles %}
+                    {% if role == "ROLE_ADMIN" %}
+                        Gérant
+                    {% elseif role == "ROLE_VENDEUR"  %}
+                        Vendeur
+                    {% else %}
+                        Membre
+                    {% endif %}
+                {% endfor %} </td>
+            </tr> 
+            <tr>
+                <th>Mot de passe</th>
+                <td>*******</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ app.user.civilite == "h" ? "M." : (app.user.civilite == "f" ? "Mme" : "") }} {{ app.user.prenom }} {{ app.user.nom }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ app.user.adresse }} {{ app.user.codePostal }} {{ app.user.ville }} </td>
+            </tr>
+            <tr>
+                <th>Commande(s)</th>
+                <td>
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Numéro</th>
+                                <th>Date</th>
+                                <th>Montant</th>
+                                <th>Etat</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           {% for commande in app.user.commandes %}
+                                <tr>
+                                    <td> {{commande.id}} </td>
+                                    <td> {{commande.dateEnregistrement|date("d/m/Y à H:i:s")}} </td>
+                                    <td> {{commande.montant}} € </td>
+                                    <td> {{commande.etat}} </td>
+                                    <td> <a href=" {{ path("espace_detail", {id: commande.id})}} " class="btn btn-outline-secondary">Voir</a> </td>
+                                </tr>
+                           {% endfor %}
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

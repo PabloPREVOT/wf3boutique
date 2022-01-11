@@ -1,0 +1,12 @@
+{% extends 'recherche/index.html.twig' %}
+
+{% block titreH1 %}Recherche par prix{% endblock %}
+
+{% block resultats %}
+    <h2>Produits dont le prix est inférieur à <strong>{{mot}}</strong> :</h2>
+    <div class="card-deck">
+        {% for produit in produits %}
+            {{include("produit/_vignette.html.twig")}}
+        {% endfor %}
+    </div>
+{% endblock %}
