@@ -1,0 +1,67 @@
+$danger: #6b2f2f;
+$primary: #183772;
+$dark: #182030;
+$warning: #a06e04;
+$success: #527e52;
+$white: #eee;
+$info: #477a93;
+
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
+@import "~bootstrap/scss/bootstrap";
+
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+html {
+    background-color: lightgray;
+    /**/
+    height: 100vh;
+}
+
+body {
+    /**/
+    height: 100%;
+    background-color: rgb(124, 90, 168);
+}
+
+body>.container {
+    background-color: #d3d3d3;
+    padding-inline: 0;
+}
+
+#wrap {
+    min-height: 100%;
+}
+
+#main {
+    padding-bottom: 150px;
+    /* this needs to be bigger than footer height*/
+    padding-inline: 10px;
+}
+
+footer {
+    position: relative;
+    margin-top: -150px;
+    /* negative value of footer height */
+    height: 150px;
+    clear: both;
+    padding-top: 20px;
+    background-color: #182030;
+    color: #eee;
+    display: none;
+}
+
+img.vignette {
+    height: 50px;
+    width: auto;
+}
+
+img.miniature {
+    width: 100px;
+    height: auto;
+}
+
+h1 {
+    font-weight: 700;
+}

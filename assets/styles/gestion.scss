@@ -1,0 +1,47 @@
+ /* html{ */
+ /* height: 100%; */
+ /* background-color: lightsteelblue; */
+ /* } */
+ 
+ aside {
+    position: fixed;
+    width: 200px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+.right-aside {
+    margin-left: 200px;
+}
+
+table.table {
+    background-color: #eee;
+}
+
+thead th {
+    text-align: center;
+}
+
+th.sorted::after {
+    float: "right";
+}
+
+th.sorted.desc::after {
+    content: "▼";
+}
+
+th.sorted.asc::after {
+    content: "▲";
+}
+
+label {
+    font-weight: 700;
+}
+
+#menu {
+    position: fixed;
+    width: calc(100% - 200px);
+    top: 0px;
+}
